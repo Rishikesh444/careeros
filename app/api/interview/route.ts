@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { auth } from "@/auth"
-import clientPromise from "@/lib/mongodb"
+import { getDbOrNull } from "@/lib/mongodb"
 import { generateGeminiAI } from "@/lib/gemini"
 
 export async function POST(request: NextRequest) {
@@ -62,12 +62,22 @@ Provide feedback in this exact JSON structure (no markdown fences):
     }
 
     // Action 2: Generate personalized interview questions based on candidate profile
-    const client = await clientPromise
-    const db = client.db("careerai")
-    const [profile, resume] = await Promise.all([
-      db.collection("profiles").findOne({ userId: session.user.id }),
-      db.collection("resumes").findOne({ userId: session.user.id }, { sort: { parsedAt: -1 } }),
-    ])
+    let profile: any = null
+    let resume: any = null
+
+    try {
+      const db = await getDbOrNull()
+      if (db) {
+        const results = await Promise.all([
+          db.collection("profiles").findOne({ userId: session.user.id }),
+          db.collection("resumes").findOne({ userId: session.user.id }, { sort: { parsedAt: -1 } }),
+        ])
+        profile = results[0]
+        resume = results[1]
+      }
+    } catch (dbErr) {
+      console.warn("Interview DB fetch skipped:", dbErr)
+    }
 
     const candidateRole = role || profile?.title || resume?.title || "Full Stack Engineer"
     const skills = (resume?.skills || []).slice(0, 10).join(", ") || "React, TypeScript, Node.js, SQL"

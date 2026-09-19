@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { auth } from "@/auth"
-import clientPromise from "@/lib/mongodb"
+import { getDbOrNull } from "@/lib/mongodb"
 
 export type JobListing = {
   id: string
@@ -257,10 +257,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "jobId, company, and role are required" }, { status: 400 })
     }
 
-    const client = await clientPromise
-    const db = client.db("careerai")
-
-    // Record application in MongoDB
     const application = {
       userId: session.user.id,
       jobId,
@@ -272,14 +268,19 @@ export async function POST(request: NextRequest) {
       notes: notes || "Applied via CareerOS direct link",
     }
 
-    await db.collection("applications").insertOne(application)
-
-    // Increment applications count on profile
-    await db.collection("profiles").updateOne(
-      { userId: session.user.id },
-      { $inc: { applicationsSent: 1 } },
-      { upsert: true }
-    )
+    try {
+      const db = await getDbOrNull()
+      if (db) {
+        await db.collection("applications").insertOne(application)
+        await db.collection("profiles").updateOne(
+          { userId: session.user.id },
+          { $inc: { applicationsSent: 1 } },
+          { upsert: true }
+        )
+      }
+    } catch (dbErr) {
+      console.warn("MongoDB application record warning:", dbErr)
+    }
 
     return NextResponse.json({ success: true, data: application })
   } catch (err) {

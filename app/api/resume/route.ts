@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { auth } from "@/auth"
-import clientPromise from "@/lib/mongodb"
+import { getDbOrNull } from "@/lib/mongodb"
 
 // ─── Comprehensive Skill Dictionary & Aliases ────────────────────────────────
 const SKILL_DICTIONARY: { name: string; patterns: RegExp[] }[] = [
@@ -160,42 +160,43 @@ export async function POST(request: NextRequest) {
       skillsFound: Math.max(combinedSkills.length, localParsed.skills.length, 6),
     }
 
-    // Calculate ATS score
-    const atsScore = calculateAtsScore(rawText, finalParsed)
+    // Calculate ATS score with detailed 5-category breakdown
+    const { score: atsScore, breakdown: atsBreakdown } = calculateAtsScore(rawText, finalParsed)
     const result = {
       ...finalParsed,
       atsScore,
+      atsBreakdown,
       fileName: file.name,
       rawTextLength: rawText.length,
     }
 
     // Save to MongoDB Atlas
     try {
-      const client = await clientPromise
-      const db = client.db("careerai")
-      await db.collection("resumes").insertOne({
-        userId: session.user.id,
-        fileName: file.name,
-        fileSize: file.size,
-        parsedAt: new Date(),
-        ...result,
-      })
+      const db = await getDbOrNull()
+      if (db) {
+        await db.collection("resumes").insertOne({
+          userId: session.user.id,
+          fileSize: file.size,
+          parsedAt: new Date(),
+          ...result,
+        })
 
-      await db.collection("profiles").updateOne(
-        { userId: session.user.id },
-        {
-          $set: {
-            ...(finalParsed.name ? { name: finalParsed.name } : {}),
-            ...(finalParsed.email ? { email: finalParsed.email } : {}),
-            ...(finalParsed.title ? { title: finalParsed.title } : {}),
-            resumeScore: atsScore,
-            skillsScore: Math.min(100, finalParsed.skillsFound * 8),
-            readiness: Math.min(100, 35 + Math.round(atsScore * 0.5) + Math.min(15, finalParsed.skillsFound)),
-            lastResumeAt: new Date(),
+        await db.collection("profiles").updateOne(
+          { userId: session.user.id },
+          {
+            $set: {
+              ...(finalParsed.name ? { name: finalParsed.name } : {}),
+              ...(finalParsed.email ? { email: finalParsed.email } : {}),
+              ...(finalParsed.title ? { title: finalParsed.title } : {}),
+              resumeScore: atsScore,
+              skillsScore: Math.min(100, finalParsed.skillsFound * 8),
+              readiness: Math.min(100, 35 + Math.round(atsScore * 0.5) + Math.min(15, finalParsed.skillsFound)),
+              lastResumeAt: new Date(),
+            },
           },
-        },
-        { upsert: true }
-      )
+          { upsert: true }
+        )
+      }
     } catch (dbErr) {
       console.warn("MongoDB resume storage warning:", dbErr)
     }
@@ -216,16 +217,23 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const client = await clientPromise
-  const db = client.db("careerai")
-  const resumes = await db
-    .collection("resumes")
-    .find({ userId: session.user.id })
-    .sort({ parsedAt: -1 })
-    .limit(10)
-    .toArray()
+  try {
+    const db = await getDbOrNull()
+    if (!db) {
+      return NextResponse.json({ data: [] })
+    }
+    const resumes = await db
+      .collection("resumes")
+      .find({ userId: session.user.id })
+      .sort({ parsedAt: -1 })
+      .limit(10)
+      .toArray()
 
-  return NextResponse.json({ data: resumes })
+    return NextResponse.json({ data: resumes })
+  } catch (err) {
+    console.warn("Resume GET fallback:", err)
+    return NextResponse.json({ data: [] })
+  }
 }
 
 // ─── Gemini AI Analysis ──────────────────────────────────────────────────────
@@ -334,39 +342,102 @@ function analyzeWithKeywords(text: string) {
 }
 
 // ─── Authentic Industry-Standard ATS Score Calculator ───────────────────────
-function calculateAtsScore(text: string, parsed: any): number {
-  let score = 25 // Baseline layout & text extraction score
+export interface AtsBreakdown {
+  contactScore: number // max 15
+  impactScore: number // max 30
+  skillsScore: number // max 25
+  experienceScore: number // max 18
+  formattingScore: number // max 12
+  actionVerbsFound: string[]
+  metricsFound: string[]
+  recommendations: string[]
+}
 
-  // 1. Contact & Identity Completeness (Max 20 pts)
-  if (parsed.name && parsed.name.length > 2) score += 6
-  if (parsed.email && parsed.email.includes("@")) score += 6
-  if (parsed.phone) score += 4
-  if (parsed.location) score += 4
+const ACTION_VERBS = [
+  "spearheaded", "architected", "engineered", "optimized", "scaled", "led",
+  "developed", "built", "designed", "automated", "delivered", "reduced",
+  "increased", "implemented", "redesigned", "launched", "orchestrated",
+  "mentored", "integrated", "refactored", "created", "deployed", "managed",
+  "transformed", "established", "accelerated", "streamlined", "migrated"
+]
 
-  // 2. Target Title & Summary (Max 15 pts)
-  if (parsed.title && parsed.title.length > 3) score += 8
-  if (parsed.summary && parsed.summary.length > 20) score += 7
+function calculateAtsScore(text: string, parsed: any): { score: number; breakdown: AtsBreakdown } {
+  // 1. Contact & Identity (Max 15 pts)
+  let contactScore = 0
+  if (parsed.name && parsed.name.length > 2) contactScore += 3
+  if (parsed.email && parsed.email.includes("@")) contactScore += 4
+  if (parsed.phone) contactScore += 3
+  if (parsed.location) contactScore += 2
+  if (/linkedin\.com|github\.com|portfolio|https?:\/\//i.test(text)) contactScore += 3
+  contactScore = Math.min(15, contactScore)
+
+  // 2. Action Verbs & Quantifiable Impact (Max 30 pts)
+  const textLower = text.toLowerCase()
+  const actionVerbsFound = Array.from(
+    new Set(ACTION_VERBS.filter((verb) => new RegExp(`\\b${verb}\\b`, "i").test(textLower)))
+  )
+  const actionVerbsScore = Math.min(15, actionVerbsFound.length * 1.5)
+
+  const metricsMatches = text.match(/\b\d+(\.\d+)?%\b|\b\d+(\.\d+)?x\b|\$\d+[\d,kmb]*\b|\b\d+\+\s*(users|clients|projects|engineers|teams|requests|queries|customers)\b/gi) || []
+  const metricsFound = Array.from(new Set(metricsMatches))
+  const metricsScore = Math.min(15, metricsFound.length * 3)
+  const impactScore = Math.min(30, Math.round(actionVerbsScore + metricsScore))
 
   // 3. Technical Skill Depth & Density (Max 25 pts)
   const skillCount = parsed.skills?.length || 0
-  if (skillCount >= 4) score += 8
-  if (skillCount >= 8) score += 8
-  if (skillCount >= 12) score += 5
-  if (skillCount >= 16) score += 4
+  const skillBaseScore = Math.min(15, skillCount * 1.5)
+  const hasCoreTech = /\b(git|ci\/cd|cloud|aws|docker|kubernetes|sql|api|system|react|node|typescript|python|java)\b/i.test(text) ? 10 : 4
+  const skillsScore = Math.min(25, Math.round(skillBaseScore + hasCoreTech))
 
-  // 4. Quantifiable Achievements & Metrics (Max 20 pts)
-  if (/\b\d+%\b|\b\d+x\b|\$\d+[\d,kmb]*\b|\b\d+\+\s*(users|clients|projects|engineers|teams|requests)\b/i.test(text)) {
-    score += 10
+  // 4. Work History & Title Relevance (Max 18 pts)
+  let experienceScore = 0
+  const historyLen = parsed.workHistory?.length || 0
+  if (historyLen >= 1) experienceScore += 6
+  if (historyLen >= 2) experienceScore += 6
+  if (parsed.title && parsed.title.length > 3) experienceScore += 6
+  experienceScore = Math.min(18, experienceScore)
+
+  // 5. Structure & Readability (Max 12 pts)
+  let formattingScore = 0
+  if (text.length >= 300 && text.length <= 4000) formattingScore += 4
+  if (/\b(education|academic|university|degree|bachelor|master|b\.tech|m\.tech|b\.s|m\.s)\b/i.test(text)) formattingScore += 4
+  if (/\b(experience|skills|education|projects|summary)\b/i.test(textLower)) formattingScore += 4
+  formattingScore = Math.min(12, formattingScore)
+
+  // Total Score (0 - 100)
+  const totalScore = Math.min(100, Math.max(0, contactScore + impactScore + skillsScore + experienceScore + formattingScore))
+
+  // Generate Recommendations
+  const recommendations: string[] = []
+  if (actionVerbsFound.length < 5) {
+    recommendations.push("Start work experience bullet points with strong action verbs (e.g. Architected, Spearheaded, Optimized).")
   }
-  if ((parsed.workHistory?.length || 0) >= 1) score += 5
-  if ((parsed.workHistory?.length || 0) >= 2) score += 5
+  if (metricsFound.length < 2) {
+    recommendations.push("Quantify achievements with clear metrics (e.g. 'Reduced latency by 40%', 'Served 100k+ monthly active users').")
+  }
+  if (contactScore < 15) {
+    recommendations.push("Ensure contact details (Email, Phone, Location, LinkedIn/GitHub URL) are prominently placed.")
+  }
+  if (skillCount < 8) {
+    recommendations.push("Expand your hard skills section with industry-relevant tools, frameworks, and databases.")
+  }
+  if (formattingScore < 12) {
+    recommendations.push("Use standard ATS section headings ('Work Experience', 'Skills', 'Education', 'Projects') for seamless parsing.")
+  }
 
-  // 5. Structure & Document Length (Max 20 pts)
-  if (text.length > 400) score += 5
-  if (text.length > 1000) score += 5
-  if ((parsed.education?.length || 0) >= 1) score += 5
-  if (/\b(git|ci\/cd|cloud|aws|docker|kubernetes|sql|api|system|architecture)\b/i.test(text)) score += 5
-
-  return Math.min(100, Math.max(50, score))
+  return {
+    score: totalScore,
+    breakdown: {
+      contactScore,
+      impactScore,
+      skillsScore,
+      experienceScore,
+      formattingScore,
+      actionVerbsFound,
+      metricsFound,
+      recommendations,
+    },
+  }
 }
+
 

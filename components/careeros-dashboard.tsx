@@ -10,6 +10,7 @@ import {
   Bell,
   BookOpen,
   BriefcaseBusiness,
+  Camera,
   Check,
   CheckCircle2,
   ChevronRight,
@@ -45,6 +46,7 @@ import {
   Sparkles,
   Star,
   Target,
+  TrendingUp,
   Upload,
   User,
   Volume2,
@@ -61,10 +63,10 @@ function CompanyIcon({ name, className = "size-6" }: { name: string; className?:
   if (lower.includes("google")) {
     return (
       <svg className={className} viewBox="0 0 24 24">
-        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
       </svg>
     )
   }
@@ -72,7 +74,7 @@ function CompanyIcon({ name, className = "size-6" }: { name: string; className?:
   if (lower.includes("vercel")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2L2 19.7778H22L12 2Z" fill="white"/>
+        <path d="M12 2L2 19.7778H22L12 2Z" fill="white" />
       </svg>
     )
   }
@@ -80,7 +82,7 @@ function CompanyIcon({ name, className = "size-6" }: { name: string; className?:
   if (lower.includes("stripe")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697.5 12.517.5 7.643.5 4.31 3.048 4.31 7.158c0 5.485 5.568 6.42 8.784 7.669 2.02.772 2.709 1.488 2.709 2.456 0 .979-.865 1.549-2.261 1.549-2.383 0-5.35-1.074-7.234-2.158L5.3 22.316C7.382 23.407 10.424 24 13.521 24c5.158 0 8.643-2.485 8.643-6.945 0-5.263-5.263-6.386-8.188-7.905z" fill="#635BFF"/>
+        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697.5 12.517.5 7.643.5 4.31 3.048 4.31 7.158c0 5.485 5.568 6.42 8.784 7.669 2.02.772 2.709 1.488 2.709 2.456 0 .979-.865 1.549-2.261 1.549-2.383 0-5.35-1.074-7.234-2.158L5.3 22.316C7.382 23.407 10.424 24 13.521 24c5.158 0 8.643-2.485 8.643-6.945 0-5.263-5.263-6.386-8.188-7.905z" fill="#635BFF" />
       </svg>
     )
   }
@@ -88,7 +90,7 @@ function CompanyIcon({ name, className = "size-6" }: { name: string; className?:
   if (lower.includes("openai") || lower.includes("anthropic")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1683a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4947zm-9.66-4.1354a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1402-1.6564z" fill="#10A37F"/>
+        <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1683a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4947zm-9.66-4.1354a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1402-1.6564z" fill="#10A37F" />
       </svg>
     )
   }
@@ -96,7 +98,7 @@ function CompanyIcon({ name, className = "size-6" }: { name: string; className?:
   if (lower.includes("apple")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.99.6-2.63 1.35-.56.65-1.05 1.71-.92 2.74 1 .08 2.02-.49 2.62-1.24z" fill="white"/>
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.99.6-2.63 1.35-.56.65-1.05 1.71-.92 2.74 1 .08 2.02-.49 2.62-1.24z" fill="white" />
       </svg>
     )
   }
@@ -104,7 +106,7 @@ function CompanyIcon({ name, className = "size-6" }: { name: string; className?:
   if (lower.includes("meta") || lower.includes("facebook")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.41 2.87 8.16 6.86 9.49v-6.72h-2.44v-2.77h2.44V9.91c0-2.41 1.44-3.75 3.64-3.75 1.05 0 2.15.19 2.15.19v2.37h-1.21c-1.2 0-1.57.74-1.57 1.51v1.81h2.67l-.43 2.77h-2.24V21.5c3.99-1.33 6.86-5.08 6.86-9.49 0-5.5-4.46-9.97-9.96-9.97z" fill="#0081FB"/>
+        <path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.41 2.87 8.16 6.86 9.49v-6.72h-2.44v-2.77h2.44V9.91c0-2.41 1.44-3.75 3.64-3.75 1.05 0 2.15.19 2.15.19v2.37h-1.21c-1.2 0-1.57.74-1.57 1.51v1.81h2.67l-.43 2.77h-2.24V21.5c3.99-1.33 6.86-5.08 6.86-9.49 0-5.5-4.46-9.97-9.96-9.97z" fill="#0081FB" />
       </svg>
     )
   }
@@ -112,7 +114,7 @@ function CompanyIcon({ name, className = "size-6" }: { name: string; className?:
   if (lower.includes("linear")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M3.5 12a8.5 8.5 0 1 1 17 0 8.5 8.5 0 0 1-17 0zm8.5-7a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" fill="#5E6AD2"/>
+        <path d="M3.5 12a8.5 8.5 0 1 1 17 0 8.5 8.5 0 0 1-17 0zm8.5-7a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" fill="#5E6AD2" />
       </svg>
     )
   }
@@ -173,6 +175,16 @@ type ParsedResume = {
   rolesExtracted: number
   skillsFound: number
   atsScore: number
+  atsBreakdown?: {
+    contactScore: number
+    impactScore: number
+    skillsScore: number
+    experienceScore: number
+    formattingScore: number
+    actionVerbsFound: string[]
+    metricsFound: string[]
+    recommendations: string[]
+  }
   fileName: string
 }
 
@@ -274,16 +286,32 @@ export function CareerOSDashboard() {
     setOverlay(null)
   }
 
-  // Load profile + jobs + latest resume from MongoDB on mount
+  // Load profile + jobs + latest resume with fast timeout & non-blocking rendering
   useEffect(() => {
+    // Unblock UI immediately so user never sees an endless loading screen
+    const timer = setTimeout(() => setProfileLoading(false), 400)
+
     async function loadData() {
-      try {
-        const [profileRes, jobsRes, resumeRes] = await Promise.all([
-          fetch("/api/profile"),
-          fetch("/api/jobs"),
-          fetch("/api/resume"),
-        ])
-        if (profileRes.ok) {
+      const fetchWithTimeout = (url: string, ms = 2500) => {
+        const controller = new AbortController()
+        const timeout = setTimeout(() => controller.abort(), ms)
+        return fetch(url, { signal: controller.signal })
+          .finally(() => clearTimeout(timeout))
+          .catch((err) => {
+            console.warn(`Fast fetch warning for ${url}:`, err)
+            return null
+          })
+      }
+
+      // Fetch in parallel non-blockingly
+      const [profileRes, jobsRes, resumeRes] = await Promise.all([
+        fetchWithTimeout("/api/profile"),
+        fetchWithTimeout("/api/jobs"),
+        fetchWithTimeout("/api/resume"),
+      ])
+
+      if (profileRes?.ok) {
+        try {
           const { data } = await profileRes.json()
           if (data) {
             setProfile((prev) => ({
@@ -292,26 +320,32 @@ export function CareerOSDashboard() {
               image: data.image ?? session?.user?.image,
             }))
           }
-        }
-        if (jobsRes.ok) {
+        } catch {}
+      }
+
+      if (jobsRes?.ok) {
+        try {
           const { data } = await jobsRes.json()
           if (data && Array.isArray(data)) {
             setJobs(data.map((j: Job, i: number) => ({ ...j, color: JOB_COLORS[i % JOB_COLORS.length] })))
           }
-        }
-        if (resumeRes.ok) {
+        } catch {}
+      }
+
+      if (resumeRes?.ok) {
+        try {
           const { data } = await resumeRes.json()
           if (data && data.length > 0) {
             setParsedResume(data[0])
           }
-        }
-      } catch (e) {
-        console.error("Failed to load initial data:", e)
-      } finally {
-        setProfileLoading(false)
+        } catch {}
       }
+
+      setProfileLoading(false)
     }
+
     loadData()
+    return () => clearTimeout(timer)
   }, [session])
 
   // Search jobs debounced
@@ -417,9 +451,8 @@ export function CareerOSDashboard() {
 
       {/* Sidebar Navigation */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-white/[0.08] bg-slate-950/80 px-4 py-5 backdrop-blur-2xl transition-transform duration-300 lg:translate-x-0 ${
-          mobileNav ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-white/[0.08] bg-slate-950/80 px-4 py-5 backdrop-blur-2xl transition-transform duration-300 lg:translate-x-0 ${mobileNav ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         {/* Brand Header */}
         <div className="mb-7 flex items-center justify-between px-2">
@@ -452,11 +485,10 @@ export function CareerOSDashboard() {
               <button
                 key={label}
                 onClick={() => go(label)}
-                className={`group flex items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm transition-all duration-200 ${
-                  isActive
+                className={`group flex items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm transition-all duration-200 ${isActive
                     ? "bg-gradient-to-r from-indigo-500/20 to-violet-500/10 text-white font-medium shadow-sm border-l-2 border-indigo-500 ring-1 ring-white/10"
                     : "text-slate-400 hover:bg-white/[0.04] hover:text-slate-200 border-l-2 border-transparent"
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <Icon className={`size-4 transition-colors ${isActive ? "text-indigo-400" : "text-slate-400 group-hover:text-slate-300"}`} />
@@ -702,9 +734,8 @@ function Card({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-white/[0.08] bg-slate-900/50 p-5 backdrop-blur-xl transition-all duration-300 hover:border-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/10 md:p-6 ${
-        glow ? "ring-1 ring-indigo-500/20 shadow-lg shadow-indigo-500/5" : ""
-      } ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-white/[0.08] bg-slate-900/50 p-5 backdrop-blur-xl transition-all duration-300 hover:border-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/10 md:p-6 ${glow ? "ring-1 ring-indigo-500/20 shadow-lg shadow-indigo-500/5" : ""
+        } ${className}`}
     >
       {children}
     </div>
@@ -1133,19 +1164,17 @@ function ActionItem({
 }) {
   return (
     <div
-      className={`group flex items-center gap-3.5 rounded-xl border p-3.5 transition-all duration-200 ${
-        done
+      className={`group flex items-center gap-3.5 rounded-xl border p-3.5 transition-all duration-200 ${done
           ? "border-emerald-500/20 bg-emerald-500/[0.04] opacity-70"
           : "border-white/[0.06] bg-white/[0.02] hover:border-indigo-500/30 hover:bg-white/[0.05]"
-      }`}
+        }`}
     >
       <button
         onClick={onToggle}
-        className={`grid size-9 shrink-0 place-items-center rounded-xl transition-all ${
-          done
+        className={`grid size-9 shrink-0 place-items-center rounded-xl transition-all ${done
             ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/30"
             : `${color} border border-white/10 group-hover:scale-105`
-        }`}
+          }`}
         aria-label={`Mark ${title} ${done ? "incomplete" : "complete"}`}
       >
         {done ? <Check className="size-4.5 stroke-[2.5]" /> : <Icon className="size-4" />}
@@ -1237,6 +1266,21 @@ function ProfileEditor({
     }
   }
 
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          update("image", event.target.result as string)
+        }
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-32 gap-3 text-slate-400">
@@ -1258,17 +1302,22 @@ function ProfileEditor({
       <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/60 p-6 md:p-8 backdrop-blur-2xl shadow-2xl">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
-            <div className="relative">
+            {/* Interactive Profile Photo Editor */}
+            <div
+              onClick={() => fileInputRef.current?.click()}
+              className="relative group cursor-pointer"
+              title="Click to edit profile picture"
+            >
               {profile.image ? (
                 <Image
                   src={profile.image}
                   alt={profile.name}
                   width={80}
                   height={80}
-                  className="size-20 rounded-2xl object-cover ring-4 ring-indigo-500/30 shadow-xl"
+                  className="size-20 rounded-2xl object-cover ring-4 ring-indigo-500/30 shadow-xl group-hover:scale-105 transition-all duration-300"
                 />
               ) : (
-                <div className="grid size-20 place-items-center rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-600 to-purple-700 text-2xl font-bold text-white shadow-xl ring-4 ring-indigo-500/20">
+                <div className="grid size-20 place-items-center rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-600 to-purple-700 text-2xl font-bold text-white shadow-xl ring-4 ring-indigo-500/20 group-hover:scale-105 transition-all duration-300">
                   {profile.name
                     .split(" ")
                     .map((n) => n[0])
@@ -1277,9 +1326,21 @@ function ProfileEditor({
                     .toUpperCase()}
                 </div>
               )}
-              <span className="absolute -bottom-1 -right-1 grid size-6 place-items-center rounded-full bg-emerald-500 text-white shadow-md ring-2 ring-slate-950">
-                <Check className="size-3.5 stroke-[3]" />
+              {/* Edit Photo Overlay */}
+              <div className="absolute inset-0 rounded-2xl bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-[10px] font-bold gap-1 backdrop-blur-xs">
+                <Camera className="size-4 text-white" />
+                <span>Edit Photo</span>
+              </div>
+              <span className="absolute -bottom-1 -right-1 grid size-6 place-items-center rounded-full bg-indigo-500 text-white shadow-md ring-2 ring-slate-950 hover:bg-indigo-400 transition-colors">
+                <Camera className="size-3" />
               </span>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleAvatarChange}
+              />
             </div>
 
             <div>
@@ -1340,11 +1401,10 @@ function ProfileEditor({
           <button
             key={t.id}
             onClick={() => setTab(t.id as any)}
-            className={`rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-200 ${
-              tab === t.id
+            className={`rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-200 ${tab === t.id
                 ? "bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-md shadow-indigo-500/20"
                 : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
-            }`}
+              }`}
           >
             {t.label}
           </button>
@@ -1643,7 +1703,11 @@ function InterviewPrepPage({
   const [isPlayingAudio, setIsPlayingAudio] = useState(false)
 
   const activeRole = customRole || parsedResume?.title || profile.title || "Senior Full Stack Engineer"
-  const activeSkills = parsedResume?.skills || ["TypeScript", "Next.js", "React", "Node.js", "SQL"]
+  const activeSkillsList = useMemo(
+    () => parsedResume?.skills || ["TypeScript", "Next.js", "React", "Node.js", "SQL"],
+    [parsedResume?.skills]
+  )
+  const activeSkillsKey = useMemo(() => activeSkillsList.join(","), [activeSkillsList])
 
   const fetchQuestions = useCallback(async () => {
     setLoading(true)
@@ -1653,7 +1717,7 @@ function InterviewPrepPage({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           role: activeRole,
-          skills: activeSkills.slice(0, 10).join(", "),
+          skills: activeSkillsKey,
         }),
       })
       if (res.ok) {
@@ -1669,7 +1733,7 @@ function InterviewPrepPage({
     } finally {
       setLoading(false)
     }
-  }, [activeRole, activeSkills])
+  }, [activeRole, activeSkillsKey])
 
   useEffect(() => {
     fetchQuestions()
@@ -1804,11 +1868,10 @@ function InterviewPrepPage({
           <button
             key={cat}
             onClick={() => setFilterCategory(cat)}
-            className={`rounded-xl px-3.5 py-2 text-xs font-semibold transition-all ${
-              filterCategory === cat
+            className={`rounded-xl px-3.5 py-2 text-xs font-semibold transition-all ${filterCategory === cat
                 ? "bg-indigo-500 text-white shadow-md shadow-indigo-500/20"
                 : "bg-white/[0.04] text-slate-400 hover:bg-white/[0.08] hover:text-slate-200"
-            }`}
+              }`}
           >
             {cat}
           </button>
@@ -1835,24 +1898,22 @@ function InterviewPrepPage({
                     setSelectedQuestion(q)
                     setEvaluation(null)
                   }}
-                  className={`p-4 rounded-xl border cursor-pointer transition-all text-left ${
-                    isSelected
+                  className={`p-4 rounded-xl border cursor-pointer transition-all text-left ${isSelected
                       ? "border-indigo-500/80 bg-indigo-500/10 shadow-lg shadow-indigo-500/10"
                       : "border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.05]"
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="rounded-md bg-indigo-500/20 px-2 py-0.5 text-[10px] font-bold text-indigo-300 uppercase tracking-wider">
                       {q.category}
                     </span>
                     <span
-                      className={`text-[11px] font-semibold ${
-                        q.difficulty === "Hard"
+                      className={`text-[11px] font-semibold ${q.difficulty === "Hard"
                           ? "text-rose-400"
                           : q.difficulty === "Medium"
-                          ? "text-amber-300"
-                          : "text-emerald-300"
-                      }`}
+                            ? "text-amber-300"
+                            : "text-emerald-300"
+                        }`}
                     >
                       {q.difficulty}
                     </span>
@@ -1884,11 +1945,10 @@ function InterviewPrepPage({
                   {/* Play Audio Button */}
                   <button
                     onClick={() => handlePlayQuestionAudio(selectedQuestion.question)}
-                    className={`inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-semibold transition-all shadow-md ${
-                      isPlayingAudio
+                    className={`inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-semibold transition-all shadow-md ${isPlayingAudio
                         ? "bg-rose-500 text-white animate-pulse"
                         : "bg-indigo-500 text-white hover:bg-indigo-400"
-                    }`}
+                      }`}
                   >
                     {isPlayingAudio ? (
                       <>
@@ -2089,6 +2149,96 @@ ${profile.name || "Candidate"}`
               </Card>
             ))}
           </div>
+
+          {/* Detailed 5-Category ATS Scoring Breakdown */}
+          {parsedResume.atsBreakdown && (
+            <Card className="border-indigo-500/30 bg-gradient-to-br from-slate-900/90 to-indigo-950/30">
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-4 mb-4">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="size-5 text-emerald-400" />
+                  <div>
+                    <h3 className="font-bold text-white text-lg">Industry-Standard ATS Score Breakdown</h3>
+                    <p className="text-xs text-slate-400">Granular 5-dimension evaluation matching Taleo, Greenhouse & Lever algorithms</p>
+                  </div>
+                </div>
+                <span className="rounded-full bg-emerald-500/20 border border-emerald-500/40 px-3 py-1 text-xs font-bold text-emerald-300">
+                  Total Score: {atsScore}/100
+                </span>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 mb-6">
+                {[
+                  { label: "Contact & Info", score: parsedResume.atsBreakdown.contactScore, max: 15, color: "from-blue-500 to-indigo-500" },
+                  { label: "Action & Metrics", score: parsedResume.atsBreakdown.impactScore, max: 30, color: "from-emerald-500 to-teal-400" },
+                  { label: "Hard Skills", score: parsedResume.atsBreakdown.skillsScore, max: 25, color: "from-purple-500 to-violet-500" },
+                  { label: "Work History", score: parsedResume.atsBreakdown.experienceScore, max: 18, color: "from-amber-500 to-orange-400" },
+                  { label: "Structure", score: parsedResume.atsBreakdown.formattingScore, max: 12, color: "from-cyan-500 to-blue-400" },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-xl bg-white/[0.03] p-3 border border-white/[0.06]">
+                    <div className="flex items-center justify-between text-xs mb-1.5">
+                      <span className="text-slate-300 font-medium">{item.label}</span>
+                      <span className="font-bold text-white">{item.score}/{item.max}</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                      <div
+                        className={`h-full rounded-full bg-gradient-to-r ${item.color} transition-all duration-500`}
+                        style={{ width: `${Math.round((item.score / item.max) * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Verified Action Verbs & Metrics */}
+              <div className="grid gap-4 md:grid-cols-2 pt-2 border-t border-white/[0.06]">
+                <div>
+                  <p className="text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1.5">
+                    <Zap className="size-3.5 text-amber-400" /> High-Impact Action Verbs Found ({parsedResume.atsBreakdown.actionVerbsFound.length})
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {parsedResume.atsBreakdown.actionVerbsFound.length > 0 ? (
+                      parsedResume.atsBreakdown.actionVerbsFound.map((verb) => (
+                        <span key={verb} className="rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[11px] font-medium text-amber-300 capitalize">
+                          {verb}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-xs text-slate-400 italic">No strong action verbs detected</span>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1.5">
+                    <TrendingUp className="size-3.5 text-emerald-400" /> Quantified Impact Metrics Found ({parsedResume.atsBreakdown.metricsFound.length})
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {parsedResume.atsBreakdown.metricsFound.length > 0 ? (
+                      parsedResume.atsBreakdown.metricsFound.slice(0, 8).map((metric) => (
+                        <span key={metric} className="rounded-md bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 text-[11px] font-medium text-emerald-300">
+                          {metric}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-xs text-slate-400 italic">No percentage or quantifiable metrics detected</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Recommendations */}
+              {parsedResume.atsBreakdown.recommendations.length > 0 && (
+                <div className="mt-4 pt-3 border-t border-white/[0.06]">
+                  <p className="text-xs font-semibold text-indigo-300 mb-2">🎯 Tailored ATS Score Boost Recommendations:</p>
+                  <ul className="space-y-1 text-xs text-slate-300 list-disc list-inside">
+                    {parsedResume.atsBreakdown.recommendations.map((rec, i) => (
+                      <li key={i} className="text-slate-300">{rec}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </Card>
+          )}
 
           {/* Blueprint & Outreach */}
           <div className="grid gap-6 lg:grid-cols-[1.3fr_1.1fr]">
@@ -2327,26 +2477,24 @@ function SkillsPage({
                       <div className="flex justify-between text-xs">
                         <span className="font-medium text-slate-200">{s.name}</span>
                         <span
-                          className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                            s.status === "Strong"
+                          className={`px-2 py-0.5 rounded text-[10px] font-bold ${s.status === "Strong"
                               ? "bg-emerald-500/15 text-emerald-300"
                               : s.status === "Gap"
-                              ? "bg-rose-500/15 text-rose-300"
-                              : "bg-indigo-500/15 text-indigo-300"
-                          }`}
+                                ? "bg-rose-500/15 text-rose-300"
+                                : "bg-indigo-500/15 text-indigo-300"
+                            }`}
                         >
                           {s.level}
                         </span>
                       </div>
                       <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
                         <div
-                          className={`h-full rounded-full ${
-                            s.status === "Strong"
+                          className={`h-full rounded-full ${s.status === "Strong"
                               ? "bg-emerald-400"
                               : s.status === "Gap"
-                              ? "bg-rose-400"
-                              : "bg-indigo-400"
-                          }`}
+                                ? "bg-rose-400"
+                                : "bg-indigo-400"
+                            }`}
                           style={{ width: `${s.match}%` }}
                         />
                       </div>
@@ -2475,11 +2623,10 @@ function JobMatchesPage({
                 <button
                   onClick={() => handleMarkApplied(job)}
                   disabled={isApplied || isApplying}
-                  className={`px-4 py-2.5 rounded-xl border text-xs font-semibold transition-colors ${
-                    isApplied
+                  className={`px-4 py-2.5 rounded-xl border text-xs font-semibold transition-colors ${isApplied
                       ? "border-emerald-500/30 bg-emerald-500/15 text-emerald-300"
                       : "border-white/15 bg-white/5 text-slate-300 hover:bg-white/10"
-                  }`}
+                    }`}
                 >
                   {isApplied ? "✓ Applied" : isApplying ? "Saving..." : "Mark Applied"}
                 </button>
@@ -2502,33 +2649,118 @@ function LearningPlanPage({
   parsedResume: ParsedResume | null
   setOverlay: (v: "ai") => void
 }) {
-  const [plan, setPlan] = useState<LearningPlanData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const activeRole = useMemo(() => {
+    const isAcademic = (t?: string | null) =>
+      !t || /\b(b\.?tech|m\.?tech|b\.?e|b\.?s|m\.?s|bachelor|master|degree|cgpa|gpa|percentage|university|college|school|engineeringcgpa)\b/i.test(t)
 
-  const activeRole = parsedResume?.title || profile.title || "Senior Full Stack Engineer"
-  const activeSkills = parsedResume?.skills || ["TypeScript", "Next.js", "React", "Node.js", "SQL"]
+    if (!isAcademic(profile.title)) return profile.title
+    if (!isAcademic(parsedResume?.title)) return parsedResume!.title!
+    return "Senior Full Stack Engineer"
+  }, [profile.title, parsedResume?.title])
+
+  const activeSkillsList = useMemo(
+    () => parsedResume?.skills || ["TypeScript", "Next.js", "React", "Node.js", "SQL"],
+    [parsedResume?.skills]
+  )
+  const activeSkillsKey = useMemo(() => activeSkillsList.join(","), [activeSkillsList])
   const atsScore = parsedResume?.atsScore || profile.resumeScore || 82
+
+  const defaultPlan = useMemo<LearningPlanData>(() => ({
+    title: `4-Week Accelerated Blueprint to ${activeRole}`,
+    estimatedWeeklyHours: "6-8 hrs/week",
+    weeks: [
+      {
+        weekNumber: 1,
+        theme: "Core Architecture & Web Performance",
+        goal: `Master high-impact software design patterns for ${activeRole}.`,
+        tasks: [
+          { id: "w1-1", title: "Refactor core UI components into modular compound components with strict TypeScript types", completed: true },
+          { id: "w1-2", title: "Audit Web Vitals (LCP, INP, CLS) and implement route streaming with suspense", completed: true },
+          { id: "w1-3", title: "Implement resilient state synchronization across offline/online transitions", completed: false },
+        ],
+        resource: "Next.js Advanced Patterns & Core Web Vitals Optimization",
+      },
+      {
+        weekNumber: 2,
+        theme: "Scalable Data Layers & Caching",
+        goal: "Build robust data models with compound indexing, Redis caching, and transactional safety.",
+        tasks: [
+          { id: "w2-1", title: "Design optimized MongoDB/PostgreSQL schemas with compound indexes and query explain plans", completed: false },
+          { id: "w2-2", title: "Integrate Redis distributed caching layer with TTL eviction for high-read APIs", completed: false },
+          { id: "w2-3", title: "Author end-to-end integration test suites with 85%+ code coverage", completed: false },
+        ],
+        resource: "High Performance Database Indexing & Caching Strategies",
+      },
+      {
+        weekNumber: 3,
+        theme: "Cloud Infrastructure, Containers & CI/CD",
+        goal: "Containerize services and automate canary deployment pipelines with GitHub Actions.",
+        tasks: [
+          { id: "w3-1", title: "Containerize full-stack application using optimized multi-stage Docker builds", completed: false },
+          { id: "w3-2", title: "Construct GitHub Actions CI/CD with automated linting, test runners, and preview deploys", completed: false },
+          { id: "w3-3", title: "Configure cloud observability, structured logging, and APM error alerts", completed: false },
+        ],
+        resource: "Docker Multi-Stage Deep Dive & Production GitHub Actions Workflows",
+      },
+      {
+        weekNumber: 4,
+        theme: "System Design & Executive STAR Interview Delivery",
+        goal: "Synthesize learning into a standout portfolio centerpiece and master STAR interview delivery.",
+        tasks: [
+          { id: "w4-1", title: "Complete 3 end-to-end System Design challenges (Notification Engine, Rate Limiter, Payment Gateway)", completed: false },
+          { id: "w4-2", title: "Publish a comprehensive architecture README on GitHub with Mermaid diagrams and live demo link", completed: false },
+          { id: "w4-3", title: "Conduct 2 mock technical and behavioral screening rounds using the STAR framework", completed: false },
+        ],
+        resource: "System Design Primer & High-Bar Interview Playbook",
+      },
+    ],
+  }), [activeRole])
+
+  const [plan, setPlan] = useState<LearningPlanData>(defaultPlan)
+  const [loading, setLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   const loadPlan = useCallback(async () => {
     setLoading(true)
+    setErrorMsg(null)
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000)
+
     try {
       const res = await fetch("/api/learning-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           role: activeRole,
-          skills: activeSkills,
+          skills: activeSkillsList,
           atsScore: atsScore,
+          timestamp: Date.now(),
+          forceFresh: true,
         }),
-      })
+        signal: controller.signal,
+      }).finally(() => clearTimeout(timeoutId))
+
       if (res.ok) {
-        const { data } = await res.json()
-        setPlan(data)
+        const { data, source } = await res.json()
+        if (data && data.weeks) {
+          setPlan(data)
+          setErrorMsg(null)
+        }
+      } else {
+        const errJson = await res.json().catch(() => ({}))
+        throw new Error(errJson.error || `HTTP ${res.status}`)
+      }
+    } catch (err: any) {
+      console.warn("Learning plan fetch notice:", err?.message || err)
+      if (err.name === "AbortError") {
+        setErrorMsg("Roadmap generation timed out after 10s. Showing accelerated blueprint.")
+      } else {
+        setErrorMsg("Loaded instant accelerated blueprint.")
       }
     } finally {
       setLoading(false)
     }
-  }, [activeRole, activeSkills, atsScore])
+  }, [activeRole, activeSkillsKey, activeSkillsList, atsScore])
 
   useEffect(() => {
     loadPlan()
@@ -2541,9 +2773,9 @@ function LearningPlanPage({
       weeks: plan.weeks.map((w) =>
         w.weekNumber === weekNumber
           ? {
-              ...w,
-              tasks: w.tasks.map((t) => (t.id === taskId ? { ...t, completed: !t.completed } : t)),
-            }
+            ...w,
+            tasks: w.tasks.map((t) => (t.id === taskId ? { ...t, completed: !t.completed } : t)),
+          }
           : w
       ),
     })
@@ -2566,18 +2798,42 @@ function LearningPlanPage({
         <button
           onClick={loadPlan}
           disabled={loading}
-          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:bg-white/10 transition-colors"
+          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover-shake-subtle transition-colors disabled:opacity-50"
         >
-          <RefreshCw className={`size-3.5 ${loading ? "animate-spin" : ""}`} /> Regenerate Roadmap
+          <RefreshCw className={`size-3.5 ${loading ? "animate-spin text-indigo-400" : ""}`} /> Regenerate Roadmap
         </button>
       </div>
 
-      {loading || !plan ? (
-        <div className="flex flex-col items-center justify-center py-32 gap-3 text-slate-400">
-          <Loader2 className="size-8 animate-spin text-indigo-400" />
-          <span className="text-xs">Building personalized 4-week roadmap with Gemini...</span>
+      {/* Profile & Target Role Guidance Line */}
+      <div className="flex items-start gap-3 rounded-xl border border-indigo-500/20 bg-indigo-500/10 p-3.5 backdrop-blur-md">
+        <Sparkles className="size-4 text-indigo-400 shrink-0 mt-0.5" />
+        <p className="text-xs text-slate-300 leading-relaxed">
+          <strong className="text-indigo-300 font-semibold">Customizing for your target role:</strong> If you want to update your profile role, change your <strong className="text-white">Professional Title</strong> in your Profile settings and click <strong className="text-white">Regenerate Roadmap</strong> to build a 4-week plan tailored specifically to your target job role.
+        </p>
+      </div>
+
+      {errorMsg && (
+        <div className="flex items-center justify-between rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs text-amber-200 backdrop-blur-md">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="size-4 text-amber-400 shrink-0" />
+            <span>{errorMsg}</span>
+          </div>
+          <button
+            onClick={loadPlan}
+            className="rounded-lg bg-amber-500/20 px-2.5 py-1 text-[11px] font-bold text-amber-300 hover:bg-amber-500/30 transition-colors"
+          >
+            Retry AI
+          </button>
         </div>
-      ) : (
+      )}
+
+      {loading && !plan ? (
+        <div className="flex flex-col items-center justify-center py-28 gap-3 text-slate-400">
+          <Loader2 className="size-9 animate-spin text-indigo-400" />
+          <span className="text-xs font-medium text-slate-300">Building personalized 4-week roadmap with Gemini AI...</span>
+          <p className="text-[11px] text-slate-500">Streaming syllabus & interview milestones</p>
+        </div>
+      ) : plan ? (
         <>
           <Card className="p-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -2620,16 +2876,14 @@ function LearningPlanPage({
                       <div
                         key={task.id}
                         onClick={() => toggleTask(week.weekNumber, task.id)}
-                        className={`flex items-start gap-3 p-2.5 rounded-xl border cursor-pointer transition-colors ${
-                          task.completed
+                        className={`flex items-start gap-3 p-2.5 rounded-xl border cursor-pointer transition-colors ${task.completed
                             ? "bg-emerald-500/10 border-emerald-500/20 text-slate-300 line-through opacity-75"
                             : "bg-white/5 border-white/10 hover:bg-white/10"
-                        }`}
+                          }`}
                       >
                         <div
-                          className={`mt-0.5 size-4 rounded flex items-center justify-center border ${
-                            task.completed ? "bg-emerald-500 border-emerald-500 text-white" : "border-white/30"
-                          }`}
+                          className={`mt-0.5 size-4 rounded flex items-center justify-center border ${task.completed ? "bg-emerald-500 border-emerald-500 text-white" : "border-white/30"
+                            }`}
                         >
                           {task.completed && <Check className="size-3" />}
                         </div>
@@ -2648,7 +2902,7 @@ function LearningPlanPage({
             ))}
           </div>
         </>
-      )}
+      ) : null}
     </div>
   )
 }
@@ -3080,11 +3334,10 @@ function Overlay({
               {chatMessages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div
-                    className={`max-w-[90%] rounded-2xl p-4 text-xs md:text-sm shadow-sm ${
-                      msg.role === "user"
+                    className={`max-w-[90%] rounded-2xl p-4 text-xs md:text-sm shadow-sm ${msg.role === "user"
                         ? "bg-indigo-600 text-white"
                         : "border border-white/10 bg-slate-900/90 text-slate-200"
-                    }`}
+                      }`}
                   >
                     {msg.role === "user" ? (
                       <p className="whitespace-pre-wrap">{msg.content}</p>
